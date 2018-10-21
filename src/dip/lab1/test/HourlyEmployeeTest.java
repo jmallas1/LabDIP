@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HourlyEmployeeTest {
 
-    HourlyEmployee emp;
+    private HourlyEmployee emp;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -19,7 +19,7 @@ class HourlyEmployeeTest {
 
     @org.junit.jupiter.api.Test
     void getAnnualWages() {
-        assertEquals(21210d, emp.getAnnualWages(), "Total wages for year");
+        assertEquals(21210d, emp.getAnnualCompensation(), "Total wages for year");
     }
 
     @org.junit.jupiter.api.Test
