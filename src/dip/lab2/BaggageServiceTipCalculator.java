@@ -8,7 +8,8 @@ package dip.lab2;
  *
  * @author your name goes here
  */
-public class BaggageServiceTipCalculator {
+public class BaggageServiceTipCalculator
+{
     private static final double MIN_BILL = 0.00;
     private static final double MAX_BILL = 100.00;
     private static final String BILL_ENTRY_ERR =
@@ -20,22 +21,25 @@ public class BaggageServiceTipCalculator {
 
     private double baseTipPerBag;
     private int bagCount;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
-    }
+
+    public enum ServiceQuality { GOOD, FAIR, POOR }
+
     private ServiceQuality serviceQuality;
 
-    public BaggageServiceTipCalculator(ServiceQuality q, int bags) {
+    public BaggageServiceTipCalculator(ServiceQuality q, int bags)
+    {
         this.setServiceRating(q); // perform validation
         this.setBagCount(bags);
 
         baseTipPerBag = 1.00; // set default value
     }
 
-    public double getTipForBaggeHandler() {
+    public double getTipForBaggeHandler()
+    {
         double tip = 0.00; // always initialize local variables
 
-        switch(serviceQuality) {
+        switch(serviceQuality)
+        {
             case GOOD:
                 tip = baseTipPerBag * bagCount * (1 + GOOD_RATE);
                 break;
@@ -50,7 +54,8 @@ public class BaggageServiceTipCalculator {
         return tip;
     }
 
-    public final void setServiceRating(ServiceQuality q) {
+    public final void setServiceRating(ServiceQuality q)
+    {
         // No need to validate because enums provide type safety!
         serviceQuality = q;
     }
@@ -63,8 +68,10 @@ public class BaggageServiceTipCalculator {
         return bagCount;
     }
 
-    public final void setBagCount(int bagCount) {
-        if(bagCount < 0) {
+    public final void setBagCount(int bagCount)
+    {
+        if(bagCount < 0)
+        {
             throw new IllegalArgumentException(
                     "bag count must be greater than or equal to zero");
         }
@@ -75,12 +82,13 @@ public class BaggageServiceTipCalculator {
         return baseTipPerBag;
     }
 
-    public void setBaseTipPerBag(double baseTipPerBag) {
-        if(baseTipPerBag < 0) {
+    public void setBaseTipPerBag(double baseTipPerBag)
+    {
+        if(baseTipPerBag < 0)
+        {
             throw new IllegalArgumentException(
                     "error: base tip must be greater than or equal to zero");
         }
         this.baseTipPerBag = baseTipPerBag;
     }
-
 }

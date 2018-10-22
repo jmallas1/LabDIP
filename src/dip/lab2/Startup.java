@@ -2,6 +2,7 @@ package dip.lab2;
 
 // An useful import if you need it.
 import java.text.NumberFormat;
+import java.util.ArrayList;
 // Another useful import if you need it.
 import javax.swing.JOptionPane;
 
@@ -23,9 +24,17 @@ public class Startup {
            GOOD, FAIR, POOR
     };
  
-    public static void main(String[] args) {
-        
-        
+    public static void main(String[] args)
+    {
+        ArrayList<AbstractService> as = new ArrayList<AbstractService>();
+
+        for (int x = 1; x <= 10; x++)
+        {
+            as.add(new BaggageService(x));
+            as.add(new FoodService());
+        }
+
+        System.out.println(as.size());
     }
 
 }

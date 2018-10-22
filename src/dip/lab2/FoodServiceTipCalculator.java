@@ -8,7 +8,8 @@ package dip.lab2;
  *
  * @author your name goes here
  */
-public class FoodServiceTipCalculator {
+public class FoodServiceTipCalculator
+{
     private static final double MIN_BILL = 0.00;
     private static final String BILL_ENTRY_ERR =
             "Error: bill must be greater than or equal to " + MIN_BILL;
@@ -17,20 +18,23 @@ public class FoodServiceTipCalculator {
     private static final double POOR_RATE = 0.10;
 
     private double bill;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
-    }
+
+    public enum ServiceQuality { GOOD, FAIR, POOR }
+
     private ServiceQuality serviceQuality;
 
-    public FoodServiceTipCalculator(ServiceQuality q, double billAmt) {
+    public FoodServiceTipCalculator(ServiceQuality q, double billAmt)
+    {
         this.setServiceRating(q);
         this.setBill(billAmt);
     }
 
-    public double getTip() {
+    public double getTip()
+    {
         double tip = 0.00; // always initialize local variables
 
-        switch(serviceQuality) {
+        switch(serviceQuality)
+        {
             case GOOD:
                 tip = bill * GOOD_RATE;
                 break;
@@ -45,14 +49,17 @@ public class FoodServiceTipCalculator {
         return tip;
     }
 
-    public final void setBill(double billAmt) {
-        if(billAmt < MIN_BILL) {
+    public final void setBill(double billAmt)
+    {
+        if(billAmt < MIN_BILL)
+        {
             throw new IllegalArgumentException(BILL_ENTRY_ERR);
         }
         bill = billAmt;
     }
 
-    public final void setServiceRating(ServiceQuality q) {
+    public final void setServiceRating(ServiceQuality q)
+    {
         // No need to validate because enums provide type safety!
         serviceQuality = q;
     }
@@ -60,5 +67,4 @@ public class FoodServiceTipCalculator {
     public ServiceQuality getServiceQuality() {
         return serviceQuality;
     }
-
 }
