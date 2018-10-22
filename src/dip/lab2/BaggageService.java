@@ -20,4 +20,9 @@ public class BaggageService extends AbstractService
     {
         return 0.00f;
     }
+
+    public int getBagCount()
+    {
+        return this.bagCount;
+    }
 }

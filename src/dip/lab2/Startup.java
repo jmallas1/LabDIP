@@ -26,15 +26,31 @@ public class Startup {
  
     public static void main(String[] args)
     {
-        ArrayList<AbstractService> as = new ArrayList<AbstractService>();
+        ArrayList<AbstractService> asl = new ArrayList<AbstractService>();
 
         for (int x = 1; x <= 10; x++)
         {
-            as.add(new BaggageService(x));
-            as.add(new FoodService());
+            asl.add(new BaggageService(x));
+            asl.add(new FoodService());
         }
 
-        System.out.println(as.size());
+        TipCalculator tc = null;
+
+        for (AbstractService as: asl )
+        {
+            if(as instanceof FoodService)
+            {
+                tc = new FoodServiceTipCalculator((FoodService)as);
+            }
+            else if(as instanceof BaggageService)
+            {
+                tc = new BaggageServiceTipCalculator((BaggageService)as);
+            }
+            System.out.println("Base bill for service: " + as.getBill());
+            System.out.println("Tip of: " + tc.generateTip());
+            System.out.println("For service level: " + as.getServiceQuality());
+            System.out.println("\n\n\n");
+        }
     }
 
 }
