@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class AbstractService
 {
     public enum ServiceQuality { GOOD, FAIR, POOR }
-    private enum ServiceType { FOOD, BAGGAGE }
+    public enum ServiceType { FOOD, BAGGAGE }
 
     private float bill;
     private ServiceQuality serviceQuality;
@@ -25,7 +25,7 @@ public abstract class AbstractService
         }
     }
 
-    public abstract Float genBill();
+    // public abstract Float genBill();
 
     public float getBill() { return bill; }
 

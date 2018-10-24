@@ -6,19 +6,18 @@ public class BaggageService extends AbstractService
 
     public BaggageService(int bagCount)
     {
-        this.bagCount = bagCount;
+        if (bagCount > 0)
+        {
+            this.bagCount = bagCount;
+        }
+        else
+        {
+            throw new IllegalArgumentException("Bag count must be greater than zero");
+        }
+
         this.setServiceQuality(super.genQuality());
-    }
-
-    @Override
-    public Float genBill() {
-        return 0.00f;
-    }
-
-    @Override
-    public float getBill()
-    {
-        return 0.00f;
+        this.setBill(0.00f);
+        this.setServiceType(ServiceType.BAGGAGE);
     }
 
     public int getBagCount()

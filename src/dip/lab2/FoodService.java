@@ -8,15 +8,23 @@ public class FoodService extends AbstractService
     {
         this.setServiceQuality(super.genQuality());
         this.setBill(this.genBill());
+        this.setServiceType(ServiceType.FOOD);
     }
 
-    @Override
     public Float genBill()
     {
+        float rBill = 0.00f;
         float minBill = 15.00f;
         float maxBill = 75.00f;
 
         Random rn = new Random();
-        return rn.nextFloat() * (maxBill - minBill) + minBill;
+        rBill = rn.nextFloat() * (maxBill - minBill) + minBill;
+
+        if (rBill < minBill)
+        {
+            throw new IllegalArgumentException("Minimum bill must be greater than " + minBill);
+        }
+
+        return rBill;
     }
 }
