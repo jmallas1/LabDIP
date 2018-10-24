@@ -2,6 +2,9 @@ package dip.lab2;
 
 // An useful import if you need it.
 import java.text.NumberFormat;
+
+import java.util.ArrayList;
+
 // Another useful import if you need it.
 import javax.swing.JOptionPane;
 
@@ -19,13 +22,36 @@ import javax.swing.JOptionPane;
  * @author your name goes here
  */
 public class Startup {
-    public static enum ServiceQuality {
-           GOOD, FAIR, POOR
-    };
- 
-    public static void main(String[] args) {
-        
-        
+
+    public static void main(String[] args)
+    {
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+        ArrayList<AbstractService> asl = new ArrayList<AbstractService>();
+
+        for (int x = 1; x <= 10; x++)
+        {
+            asl.add(new BaggageService(x));
+            asl.add(new FoodService());
+        }
+
+        TipCalculator tc = null;
+
+        for (AbstractService as: asl )
+        {
+            if(as instanceof FoodService)
+            {
+                tc = new FoodServiceTipCalculator((FoodService)as);
+            }
+            else if(as instanceof BaggageService)
+            {
+                tc = new BaggageServiceTipCalculator((BaggageService)as);
+            }
+            System.out.println("Base bill for " + as.getServiceType() + " service: " + nf.format(as.getBill()));
+            System.out.println("Tip of: " + nf.format(tc.generateTip()));
+            System.out.println("For service level: " + as.getServiceQuality());
+            System.out.println("\n");
+        }
     }
 
 }
